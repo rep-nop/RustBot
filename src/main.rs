@@ -54,7 +54,12 @@ fn actual_main() -> Result<()> {
 
     client.with_framework(|f| f
         .configure(|c| c
-            .prefix("?"))
+            .prefix("??"))
+        .group("Help", |g| g
+            .command("help", |c| c
+                .exec_help(serenity::ext::framework::help_commands::with_embeds))
+            .command("helpp", |c| c
+                .exec_help(serenity::ext::framework::help_commands::plain)))
         .group("Meta", |g| g
             .command("ping", |c| c
                 .exec(commands::ping)
